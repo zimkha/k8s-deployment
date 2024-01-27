@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend-zimkha
+  name: frontend-zimkha
+  namespace: kdpd00201
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: frontend-zimkha
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null      
+      labels:
+        app: frontend-zimkha
+    spec:
+      containers:
+      - image: lfccncf/nginx:1.13.7
+        name: nginx
+        ports:
+        - containerPort: 8080      
+        resources: {}
