@@ -12,6 +12,7 @@ spec:
     - /bin/sh
     - -c
     - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
+    -  'while true; do echo $(date); sleep 1; done'
     livenessProbe:
       exec:
         command:
