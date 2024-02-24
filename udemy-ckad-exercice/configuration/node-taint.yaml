@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Node
+metadata:
+  annotations:
+    volumes.kubernetes.io/controller-managed-attach-detach: "true"
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+    kubernetes.io/hostname: node01
+    kubernetes.io/os: linux
+  name: node01
+  resourceVersion: "2853"
+  uid: 041a36a4-e3d1-4d10-8580-1afde11d9526
+spec:
+  podCIDR: 10.244.1.0/24
+  podCIDRs:
+  - 10.244.1.0/24
+  taints:
+  - effect: NoSchedule
+    key: spray
+    value: mortein
+status:
+  addresses:
+  - address: 192.28.87.9
+    type: InternalIP
+  - address: node01
+    type: Hostname
+  allocatable:
+    cpu: "36"
+    ephemeral-storage: "936398358207"
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 214484656Ki
+    pods: "110"
+  capacity:
+    cpu: "36"
+    ephemeral-storage: 1016057248Ki
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 214587056Ki
+    pods: "110"
+
+  daemonEndpoints:
+    kubeletEndpoint:
+      Port: 10250
+  images:
+  - names:
+    - docker.io/kodekloud/fluent-ui-running@sha256:78fd68ba8a79adcd3e58897a933492886200be513076ba37f843008cc0168f81
+    - docker.io/kodekloud/fluent-ui-running:latest
+    sizeBytes: 389734636
+  - names:
+    - docker.io/library/nginx@sha256:10d1f5b58f74683ad34eb29287e07dab1e90f10af243f151bb50aa5dbb4d62ee
+    sizeBytes: 70544635
+  - names:
+    - docker.io/library/nginx@sha256:c26ae7472d624ba1fafd296e73cecc4f93f853088e6a9c13c0d52f6ca5865107
+    - docker.io/library/nginx:latest
+    sizeBytes: 70534948
+  - names:
+    - registry.k8s.io/etcd@sha256:22f892d7672adc0b9c86df67792afdb8b2dc08880f49f669eaaa59c47d7908c2
+    - registry.k8s.io/etcd:3.5.10-0
+    sizeBytes: 56649232
+  - names:
+    - registry.k8s.io/kube-apiserver@sha256:921d9d4cda40bd481283375d39d12b24f51281682ae41f6da47f69cb072643bc
+    - registry.k8s.io/kube-apiserver:v1.29.0
+    sizeBytes: 35068125
+  - names:
+    - registry.k8s.io/kube-controller-manager@sha256:d1e38ea25b27e57b41995ef59ad76dd33481853a5b8d1a91abb7a8be32b7e7da
+    - registry.k8s.io/kube-controller-manager:v1.29.0
+    sizeBytes: 33426031
+  - names:
+    - docker.io/weaveworks/weave-kube@sha256:d797338e7beb17222e10757b71400d8471bdbd9be13b5da38ce2ebf597fb4e63
+    - docker.io/weaveworks/weave-kube:2.8.1
+    sizeBytes: 30924173
+  - names:
+    - registry.k8s.io/kube-proxy@sha256:8da4de35c4929411300eb8052fdfd34095b6090ed0c8dbc776d58bf1c61a2c89
+    - registry.k8s.io/kube-proxy:v1.29.0
+    sizeBytes: 28358954
+  - names:
+    - docker.io/flannel/flannel@sha256:c951947891d7811a4da6bf6f2f4dcd09e33c6e1eb6a95022f3f621d00ed4615e
+    - docker.io/flannel/flannel:v0.23.0
+    sizeBytes: 28051548
+  - names:
+    - registry.k8s.io/kube-scheduler@sha256:5df310234e4f9463b15d166778d697830a51c0037ff28a1759daaad2d3cde991
+    - registry.k8s.io/kube-scheduler:v1.29.0
+    sizeBytes: 18521870
+  - names:
+    - registry.k8s.io/coredns/coredns@sha256:1eeb4c7316bacb1d4c8ead65571cd92dd21e27359f0d4917f1a5822a73b75db1
+    - registry.k8s.io/coredns/coredns:v1.11.1
+    sizeBytes: 18182961
+  - names:
+    - docker.io/library/nginx@sha256:3923f8de8d2214b9490e68fd6ae63ea604deddd166df2755b788bef04848b9bc
+    - docker.io/library/nginx:alpine
+    sizeBytes: 17976674
+  - names:
+    - registry.k8s.io/coredns/coredns@sha256:a0ead06651cf580044aeb0a0feba63591858fb2e43ade8c9dea45a6a89ae7e5e
+    - registry.k8s.io/coredns/coredns:v1.10.1
+    sizeBytes: 16190758
+  - names:
+    - docker.io/weaveworks/weave-npc@sha256:38d3e30a97a2260558f8deb0fc4c079442f7347f27c86660dbfc8ca91674f14c
+    - docker.io/weaveworks/weave-npc:2.8.1
+    sizeBytes: 12814131
+  - names:
+    - docker.io/flannel/flannel-cni-plugin@sha256:ca6779c6ad63b77af8a00151cefc08578241197b9a6fe144b0e55484bc52b852
+    - docker.io/flannel/flannel-cni-plugin:v1.2.0
+    sizeBytes: 3879095
+  - names:
+    - docker.io/library/busybox@sha256:1ceb872bcc68a8fcd34c97952658b58086affdcb604c90c1dee2735bde5edc2f
+    - docker.io/library/busybox:latest
+    sizeBytes: 2224272
+  - names:
+    - registry.k8s.io/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+    - registry.k8s.io/pause:3.9
+    sizeBytes: 321520
+  - names:
+    - registry.k8s.io/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    - registry.k8s.io/pause:3.6
+    sizeBytes: 301773
