@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-02-24T13:34:04Z"
+  labels:
+    name: webapp-pod
+  name: webapp-pod
+  namespace: default
+  resourceVersion: "900"
+  uid: 3db1d071-8def-4215-ba41-1b4863a7d253
+spec:
+  containers:
+  - image: kodekloud/simple-webapp-mysql
+    imagePullPolicy: Always
+    name: webapp
+    resources: {}
+    envFrom:
+      - secretRef:
+          name: db-secret
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9smfp
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: controlplane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-9smfp
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-24T13:34:14Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-24T13:34:04Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-24T13:34:14Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-24T13:34:14Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-02-24T13:34:04Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://c50b06e926106796ed104887b8a977fcd6c53019b82794889e78ee8012bb5986
+    image: docker.io/kodekloud/simple-webapp-mysql:latest
+    imageID: docker.io/kodekloud/simple-webapp-mysql@sha256:92943d2b3ea4a1db7c8a9529cd5786ae3b9999e0246ab665c29922e9800d1b41
+    lastState: {}
+    name: webapp
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-02-24T13:34:14Z"
+  hostIP: 192.22.80.3
+  hostIPs:
+  - ip: 192.22.80.3
+  phase: Running
+  podIP: 10.42.0.9
+  podIPs:
+  - ip: 10.42.0.9
+  qosClass: BestEffort
+  startTime: "2024-02-24T13:34:04Z"
