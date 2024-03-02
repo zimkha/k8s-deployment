@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: backend
-  replicas: 2
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 25%

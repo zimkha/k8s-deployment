@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-pod
+spec:
+  #completions: 3 par defaut on ne précise pas le spec.completions s'il ya le parallelism
+  parallelism: 3 # pour un job non parallél on peux laisser les deux parametres désactivé 
+  backoffLimit: 25
+  template:
+    metadata:
+      labels:
+        app: first-job-pod
+    spec:
+      containers:
+        - name: MYJOB
+          image: alpin:latest
+      restartPolicy: Never
+   
