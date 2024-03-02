@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: throw-dice
+  namespace: default
+  labels:
+    app: job-pod
+spec:
+  template:
+    metadata:
+      name: job-pod
+      labels:
+        app: job-pod
+    spec:
+     containers:
+      - name: throw-dice
+        image: kodekloud/throw-dice
+        command: ["sh", "-c", "echo $((1 + $RANDOM % 6)) > /tmp/result"]
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: throw-dice-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: throw-dice
+        image: kodekloud/throw-dice
+      restartPolicy: Never
+  backoffLimit: 25
+  completions: 3
+  parallelism: 3
