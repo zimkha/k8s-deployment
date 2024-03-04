@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nginx
+  namespace: default
+spec:
+  selector:
+    app:  nginx-back
+  type: ClusterIP
+  sessionAffinity: None
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: service-nginx
+    protocol: TCP
+    port: 80
+    targetPort: 80
+    

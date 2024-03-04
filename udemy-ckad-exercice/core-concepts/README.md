@@ -54,4 +54,54 @@ status: {}
 ```
 </p>
 </details>
+### Get the YAML for a new namespace called 'myns' without creating it
+
+<details><summary>show</summary>
+<p>
+
+````bash
+ # type this command on your terminal 
+ kubectl create namespace myns -o yaml --dry-run=client > new-ns.yaml
+ # cat new-ns.yaml for seeing the out put
+ # Or, type this command for seeing on the console the output without save this on a yaml file
+ kubectl create namespace myns -o yaml --dry-run=client
+````
+</p>
+</details>
+
+### Create the YAML for a new ResourceQuota called 'myrq' with hard limits of 1 CPU, 1G memory and 2 pods without creating it
+
+<details><summary>show</summary>
+<p>
+
+````bash
+kubectl create quota myrq --hard=cpu=1,memory=1G,pods=2 --dry-run=client -o yaml
+
+````
+</p>
+</details>
+
+
+### Get pods on all namespaces
+
+<details><summary>show</summary>
+<p>
+
+````bash
+kubectl get pods --all-namespace
+````
+</p>
+
+</details>
+
+### Create a pod with image nginx called nginx and expose traffic on port 80
+
+<details>
+
+#### see these files pod-nginx.yaml and service-nginx.yaml or
+```` bash
+kubectl run nginx --image=nginx --restart=Never --port=80
+
+````
+</details>
 
