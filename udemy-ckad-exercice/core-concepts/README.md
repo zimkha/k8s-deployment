@@ -26,5 +26,5 @@ spec:
 
   kubectl run busybox --image=busybox --command --restart=Never -it --rm -- env # Pour voir les output
   kubectl logs busybox
-```
+
   </details>
