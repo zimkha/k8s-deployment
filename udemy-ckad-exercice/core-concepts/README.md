@@ -28,6 +28,26 @@ kubectl run busybox --image=busybox --command --restart=Never -- env
 # and then, check its logs
 kubectl logs busybox
 ```
-
 </p>
-</details>s>
+</details>
+
+### Create the pod that was just described using YAML
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  labels:
+    run: busybox
+spec:
+  containers:
+    - name: busybox
+      image: nginx
+      command:
+      - env
+  restartPolicy: Never
+  dnsPolicy: ClusterFirst
+status: {}
+
+```
