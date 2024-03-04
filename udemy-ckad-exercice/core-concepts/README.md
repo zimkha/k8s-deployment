@@ -34,6 +34,8 @@ kubectl logs busybox
 ### Create the pod that was just described using YAML
 <deltails>
  <summary> show </summary>
+ <p>
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -51,5 +53,6 @@ spec:
   dnsPolicy: ClusterFirst
 status: {}
 ```
+</p>
 </details>
 
