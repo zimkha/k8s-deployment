@@ -32,7 +32,7 @@ kubectl logs busybox
 </details>
 
 ### Create the pod that was just described using YAML
-<deltails><summary>show</summary>
+<details><summary>show</summary>
  <p>
 
 ```yaml
