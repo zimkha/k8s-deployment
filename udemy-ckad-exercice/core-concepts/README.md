@@ -21,10 +21,9 @@ spec:
 ### Create a busybox pod (using kubectl command) that runs the command "env". Run it and see the output
 <details>
 <summary> Solution </summary>
-```
+```text
   kubectl run busybox --image=busybox --command --restartPolicy=Never --env
-
   kubectl run busybox --image=busybox --command --restart=Never -it --rm -- env # Pour voir les output
   kubectl logs busybox
-
+```
   </details>
