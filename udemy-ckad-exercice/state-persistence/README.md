@@ -1,4 +1,4 @@
-### Persistent Volume with thow container
+### Persistent Volume with too container
 
 #command. Make both containers mount an emptyDir at '/etc/foo'. Connect to the second busybox,
 #write the first column of '/etc/passwd' file to '/etc/foo/passwd'.
