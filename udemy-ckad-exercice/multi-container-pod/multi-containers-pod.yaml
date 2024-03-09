@@ -21,14 +21,6 @@ spec:
     volumeMounts:
     - mountPath: /var/log/event-simulator/
       name: log-volume
-
-  volumes:
-  - name: log-volume
-    hostPath:
-      # directory location on host
-      path: /var/log/webapp
-      # this field is optional
-      type: DirectoryOrCreate
   dnsPolicy: ClusterFirst
   enableServiceLinks: true
   nodeName: controlplane
@@ -50,68 +42,15 @@ spec:
     operator: Exists
     tolerationSeconds: 300
   volumes:
-  - hostPath:
-      path: /var/log/webapp
-      type: DirectoryOrCreate
-    name: log-volume
-  - name: kube-api-access-8dsb9
-    projected:
-      defaultMode: 420
-      sources:
-      - serviceAccountToken:
-          expirationSeconds: 3607
-          path: token
-      - configMap:
-          items:
-          - key: ca.crt
-            path: ca.crt
-          name: kube-root-ca.crt
-      - downwardAPI:
-          items:
-          - fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-            path: namespace
-status:
-  conditions:
-  - lastProbeTime: null
-    lastTransitionTime: "2024-02-25T16:21:55Z"
-    status: "True"
-    type: PodReadyToStartContainers
-  - lastProbeTime: null
-    lastTransitionTime: "2024-02-25T16:20:44Z"
-    status: "True"
-    type: Initialized
-  - lastProbeTime: null
-    lastTransitionTime: "2024-02-25T16:21:55Z"
-    status: "True"
-    type: Ready
-  - lastProbeTime: null
-    lastTransitionTime: "2024-02-25T16:21:55Z"
-    status: "True"
-    type: ContainersReady
-  - lastProbeTime: null
-    lastTransitionTime: "2024-02-25T16:20:44Z"
-    status: "True"
-    type: PodScheduled
-  containerStatuses:
-  - containerID: containerd://8510655de2bfb615247e4b507663646332f9e16b97079b2688b7b5971d5e229e
-    image: docker.io/kodekloud/event-simulator:latest
-    imageID: docker.io/kodekloud/event-simulator@sha256:1e3e9c72136bbc76c96dd98f29c04f298c3ae241c7d44e2bf70bcc209b030bf9
-    lastState: {}
-    name: app
-    ready: true
-    restartCount: 0
-    started: true
-    state:
-      running:
-        startedAt: "2024-02-25T16:21:54Z"
-  hostIP: 192.29.147.9
-  hostIPs:
-  - ip: 192.29.147.9
-  phase: Running
-  podIP: 10.244.0.8
-  podIPs:
-  - ip: 10.244.0.8
-  qosClass: BestEffort
-  startTime: "2024-02-25T16:20:44Z"
+    - name: log-volume
+      hostPath:
+      # directory location on host
+        path: /var/log/webapp
+      # this field is optional
+        type: DirectoryOrCreate
+    - name: log-volume
+      hostPath:
+        path: /var/log/webapp
+        type: DirectoryOrCreate
+      
+
