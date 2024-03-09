@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: ' /'
+  creationTimestamp: "2024-03-09T18:20:19Z"
+  generation: 2
+  name: webapp-ingress
+  namespace: app-space
+  resourceVersion: "3164"
+  uid: b8ea3038-f581-4768-b703-61cb303c7cb5
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: wear-service
+            port:
+              number: 8080
+        path: /wear
+        pathType: Exact
+      - backend:
+          service:
+            name: video-service
+            port:              
+              number: 8080
+        path: /watch
+        pathType: Exact
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.97.116.189
