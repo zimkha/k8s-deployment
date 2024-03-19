@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: pod-config-volume
+
+spec:
+  containers:
+  - name: pod-config
+    image: busybox
+    volumeMounts:
+      - mountPath: /etc/config
+        name: config-vol
+    resources: {}
+  restartPolicy: Never
+  volumes:
+    - name: config-vol
+      configMap:
+        name: log-config
+        items:
+        - key: log_level
+          path: level-log
+# La ConfigMap log-config est montée comme un volume et tout le contenu stocké 
+# dans son entrée log_level est monté dans le Pod au chemin 
+# "/etc/config/log_level". À noter que ce chemin est dérivé du
+# mountPath du volume et le path est étiqueté avec la clef log_level
+---
+apiVersion: v1
+data:
+ log_level: DATA_LOG_LEVEL
+kind: ConfigMap
+metadata:
+  name: log-config
