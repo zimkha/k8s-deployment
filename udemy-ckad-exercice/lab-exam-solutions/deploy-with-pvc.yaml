@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-exmp
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+  - ReadWriteOnce
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow
+  nfs:
+    path: /data/file
+    server: 127.0.0.1
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-pvc
+spec:
+  selector:
+    matchLabels:
+      app: deploy-pvc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: deploy-pvc
+    spec:
+      containers:
+      - name: deploy-pvc
+        image: nginx
+        resources: {}
+        volumeMounts:
+        - name: log-volume
+          mountPath: /data/log
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: shared-pvc
+      restartPolicy: Always
