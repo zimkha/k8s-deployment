@@ -2,6 +2,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: log-volume
+  labels:
+    name: log-volume
 spec:
   capacity:
     storage: 1Gi
@@ -17,13 +19,15 @@ kind: PersistentVolumeClaim
 metadata:
   name: log-claim
 spec:
+  selector:
+    matchLabels:
+      name: log-volume
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 200Mi
   storageClassName: manual
-
 ---
 apiVersion: v1
 kind: Pod
